@@ -22,7 +22,7 @@
       command: cd /tmp/openssl-1.0.2h/  
 
     - name: Configure and build OpenSSL  
-      command: ./config  
+      command: /tmp/openssl-1.0.2h/config  
       
     - name: Build OpenSSL  
       command: make  
