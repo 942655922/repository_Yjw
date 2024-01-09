@@ -1,0 +1,53 @@
+---
+- hosts: 192.168.99.131
+  tasks:
+    - name: Download the patch
+      get_url:
+        url: https://www.openssl.org/source/openssl-1.0.2h.tar.gz
+        dest: /tmp
+
+    - name: Extract the patch
+      unarchive:
+        src: /tmp/openssl-1.0.2h.tar.gz
+        dest: /tmp
+        remote_src: yes
+
+    # - name: Install the patch
+    #   command: 
+    #     cmd: ./config && make && make test && make install
+    #     chdir: /tmp/openssl-1.0.2h/
+    #     creates: /usr/local/ssl/bin/openssl
+
+    - name: Configure and build OpenSSL  
+      command:   
+        cmd: ./config  
+        register: result1  
+      ignore_errors: yes  
+      
+    - name: Build OpenSSL  
+      command:   
+        cmd: make  
+        register: result2  
+      when: result1.rc == 0  
+      ignore_errors: yes  
+      
+    - name: Test OpenSSL  
+      command:   
+        cmd: make test  
+        register: result3  
+      when: result2.rc == 0  
+      ignore_errors: yes  
+      
+    - name: Install OpenSSL  
+      command:   
+        cmd: make install  
+        register: result4  
+      when: result3.rc == 0  
+      ignore_errors: yes
+
+    - name: Verify installation
+      command: openssl version
+      register: result
+
+    - debug:
+        var: result.stdout_lines
