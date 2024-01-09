@@ -19,14 +19,16 @@
     #     creates: /usr/local/ssl/bin/openssl
 
     - name: CD 
-      command: cd /tmp/openssl-1.0.2h/  
+      command: cd /tmp/openssl-1.0.2h/
 
     - name: Configure and build OpenSSL  
-      command: /tmp/openssl-1.0.2h/config  
+      command: ./config
+        chdir: /tmp/openssl-1.0.2h/
       
     - name: Build OpenSSL  
-      command: make all
-      
+      command: make
+        chdir: /tmp/openssl-1.0.2h/
+
     - name: Test OpenSSL  
       command: make test
       
