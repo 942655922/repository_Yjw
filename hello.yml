@@ -1,6 +1,29 @@
-- name: Hello World Sample
-  hosts: 192.168.99.131
-  tasks:
-    - name: Hello Message
-      debug:
-        msg: "Hello World!"
+---  
+- name: 下载并安装补丁  
+  hosts: 192.168.99.131  
+  become: yes  
+  gather_facts: no  
+  tasks:  
+    - name: 下载补丁  
+      ansible.builtin.command:  
+        cmd: wget https://www.openssl.org/source/openssl-1.0.2h.tar.gz -O /tmp/openssl-1.0.2h.tar.gz  
+      register: download_output  
+      changed_when: false  
+  
+    - name: 解压补丁  
+      ansible.builtin.command:  
+        cmd: tar -xzf /tmp/openssl-1.0.2h.tar.gz -C /tmp/  
+      register: extract_output  
+      changed_when: false  
+  
+    - name: 安装补丁  
+      ansible.builtin.shell:  
+        cmd: /tmp/openssl-1.0.2h/*/Makefile install  
+      register: install_output  
+      changed_when: false  
+  
+  handlers:  
+    - name: 重启服务  
+      ansible.builtin.service:  
+        name: openssl  
+        state: restarted
