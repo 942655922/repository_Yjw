@@ -22,28 +22,24 @@
       command:   
         shell: ./config  
         register: result1  
-      ignore_errors: yes  
       
     - name: Build OpenSSL  
       command:   
         shell: make  
         register: result2  
       when: result1.rc == 0  
-      ignore_errors: yes  
       
     - name: Test OpenSSL  
       command:   
         shell: make test  
         register: result3  
       when: result2.rc == 0  
-      ignore_errors: yes  
       
     - name: Install OpenSSL  
       command:   
         shell: make install  
         register: result4  
       when: result3.rc == 0  
-      ignore_errors: yes
 
     - name: Verify installation
       command: openssl version
