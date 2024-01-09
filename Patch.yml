@@ -6,19 +6,19 @@
   tasks:  
     - name: 下载补丁  
       ansible.builtin.command:  
-        cmd: /usr/bin/wget https://www.openssl.org/source/openssl-1.0.2h.tar.gz -O /tmp/openssl-1.0.2h.tar.gz  
+        argv: /usr/bin/wget https://www.openssl.org/source/openssl-1.0.2h.tar.gz -O /tmp/openssl-1.0.2h.tar.gz  
       register: download_output  
       changed_when: false  
   
     - name: 解压补丁  
       ansible.builtin.command:  
-        cmd: tar -xzf /tmp/openssl-1.0.2h.tar.gz -C /tmp/  
+        argv: tar -xzf /tmp/openssl-1.0.2h.tar.gz -C /tmp/  
       register: extract_output  
       changed_when: false  
   
     - name: 安装补丁  
       ansible.builtin.shell:  
-        cmd: /tmp/openssl-1.0.2h/*/Makefile install  
+        argv: /tmp/openssl-1.0.2h/*/Makefile install  
       register: install_output  
       changed_when: false  
   
