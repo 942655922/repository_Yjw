@@ -41,9 +41,9 @@
         cmd: make install
         chdir: /tmp/openssl-1.0.2h/
 
-    # - name: Verify installation
-    #   command: openssl version
-    #   register: result
+    - name: Verify installation
+      command: openssl version
+      register: result
 
-    # - debug:
-    #     var: result.stdout_lines
+    - debug:
+        var: result.stdout_lines
