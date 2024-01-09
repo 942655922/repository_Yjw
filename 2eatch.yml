@@ -19,7 +19,7 @@
     #     creates: /usr/local/ssl/bin/openssl
 
     - name: CD 
-      cd:  
+      cd:
         path: /tmp/openssl-1.0.2h/  
 
     - name: Configure and build OpenSSL  
