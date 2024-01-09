@@ -25,13 +25,13 @@
       command: /tmp/openssl-1.0.2h/config  
       
     - name: Build OpenSSL  
-      command: make  
+      command: make all
       
     - name: Test OpenSSL  
-      command: make test  
+      command: make test
       
     - name: Install OpenSSL  
-      command: make install  
+      command: make install
 
     - name: Verify installation
       command: openssl version
