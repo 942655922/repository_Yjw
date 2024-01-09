@@ -18,6 +18,9 @@
     #     chdir: /tmp/openssl-1.0.2h/
     #     creates: /usr/local/ssl/bin/openssl
 
+    - name: CD 
+      command: cd /tmp/openssl-1.0.2h/
+
     - name: Configure and build OpenSSL  
       shell: ./config  
       register: result1  
