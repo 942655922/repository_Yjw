@@ -6,7 +6,7 @@
   tasks:  
     - name: 下载补丁  
       ansible.builtin.command:  
-        argv: wget https://www.openssl.org/source/openssl-1.0.2h.tar.gz -O /tmp/openssl-1.0.2h.tar.gz  
+        argv: /usr/bin/wget https://www.openssl.org/source/openssl-1.0.2h.tar.gz -O /tmp/openssl-1.0.2h.tar.gz  
       register: download_output  
       changed_when: false  
   
