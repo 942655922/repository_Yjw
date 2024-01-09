@@ -22,11 +22,13 @@
       command: cd /tmp/openssl-1.0.2h/
 
     - name: Configure and build OpenSSL  
-      command: ./config
+      command:
+        cmd: ./config
         chdir: /tmp/openssl-1.0.2h/
       
     - name: Build OpenSSL  
-      command: make
+      command:
+        cmd: make
         chdir: /tmp/openssl-1.0.2h/
 
     - name: Test OpenSSL  
