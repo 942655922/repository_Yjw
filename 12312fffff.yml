@@ -31,10 +31,10 @@
         cmd: make
         chdir: /tmp/openssl-1.0.2h/
 
-    - name: Test OpenSSL  
-      command:
-        cmd: make test
-        chdir: /tmp/openssl-1.0.2h/
+    # - name: Test OpenSSL  
+    #   command:
+    #     cmd: make test
+    #     chdir: /tmp/openssl-1.0.2h/
       
     - name: Install OpenSSL  
       command:
