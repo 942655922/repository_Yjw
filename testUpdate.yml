@@ -1,6 +1,6 @@
 ---  
 - name: Update CentOS Packages  
-  hosts: webservers
+  hosts: 192.168.99.131
   become: yes  
   tasks:  
     - name: Update CentOS packages  
