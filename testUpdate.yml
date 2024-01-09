@@ -1,0 +1,7 @@
+---  
+- name: Update CentOS Packages  
+  hosts: webservers
+  become: yes  
+  tasks:  
+    - name: Update CentOS packages  
+      command: sudo yum update -y
