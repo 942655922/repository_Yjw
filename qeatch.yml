@@ -22,23 +22,16 @@
       command: cd /tmp/openssl-1.0.2h/
 
     - name: Configure and build OpenSSL  
-      shell: ./config  
-      register: result1  
+      command: ./config  
       
     - name: Build OpenSSL  
-      shell: make  
-      register: result2  
-      when: result1.rc == 0  
+      command: make  
       
     - name: Test OpenSSL  
-      shell: make test  
-      register: result3  
-      when: result2.rc == 0  
+      command: make test  
       
     - name: Install OpenSSL  
-      shell: make install  
-      register: result4  
-      when: result3.rc == 0  
+      command: make install  
 
     - name: Verify installation
       command: openssl version
