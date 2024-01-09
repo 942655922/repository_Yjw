@@ -32,10 +32,14 @@
         chdir: /tmp/openssl-1.0.2h/
 
     - name: Test OpenSSL  
-      command: make test
+      command:
+        cmd: make test
+        chdir: /tmp/openssl-1.0.2h/
       
     - name: Install OpenSSL  
-      command: make install
+      command:
+        cmd: make install
+        chdir: /tmp/openssl-1.0.2h/
 
     - name: Verify installation
       command: openssl version
