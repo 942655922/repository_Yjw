@@ -1,0 +1,13 @@
+---
+- hosts: 192.168.99.131
+  tasks:
+    - name: Download the patch
+      get_url:
+        url: https://www.openssl.org/source/openssl-1.0.2h.tar.gz
+        dest: /tmp
+
+    - name: Extract the patch
+      unarchive:
+        src: /tmp/openssl-1.0.2h.tar.gz/openssl-1.0.2h.tar.gz
+        dest: /tmp
+        remote_src: yes
