@@ -15,21 +15,21 @@
     - name: 安装依赖-perl-ExtUtils-CBuilder
       yum:  
         name: perl-ExtUtils-CBuilder
-        state: present  
+        state: present
         use: '-y'
 
     - name: 安装依赖-perl-ExtUtils-MakeMaker
-      yum:  
+      yum:
         name:perl-ExtUtils-MakeMaker
-        state: present  
+        state: present
         use: '-y'
 
-    - name: Configure and build OpenSSL  
+    - name: Configure and build OpenSSL
       command:
         cmd: ./config --prefix=/usr/lib/openssl/openssl
         chdir: /tmp/openssl-3.0.12/
       
-    - name: Build OpenSSL  
+    - name: Build OpenSSL
       command:
         cmd: make
         chdir: /tmp/openssl-3.0.12/
@@ -44,7 +44,7 @@
         cmd: make install
         chdir: /tmp/openssl-3.0.12/
 
-    - name: sudo ldconfig 
+    - name: sudo ldconfig
       command:
         cmd: sudo ldconfig
 
