@@ -12,6 +12,7 @@
       environment:
         LD_LIBRARY_PATH: "/usr/lib/openssl/openssl/lib64"
       ignore_errors: true
+    
     - name: Verify installation
       command: openssl version
       register: result
