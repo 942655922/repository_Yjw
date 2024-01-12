@@ -16,13 +16,11 @@
       yum:  
         name: perl-ExtUtils-CBuilder
         state: present
-        use: '-y'
 
     - name: 安装依赖-perl-ExtUtils-MakeMaker
       yum:
         name: perl-ExtUtils-MakeMaker
         state: present
-        use: '-y'
 
     - name: Configure and build OpenSSL
       command:
