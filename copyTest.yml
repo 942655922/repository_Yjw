@@ -1,0 +1,9 @@
+---  
+- name: Update CentOS Packages  
+  hosts: 192.168.99.131
+  become: yes  
+  tasks:  
+    - name: copy openssh 
+      copy:
+        src: /patchPkg/openssl-3.0.12.tar.gz
+        dest: /tmp/openssl-3.0.12.tar.gz
