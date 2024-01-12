@@ -3,44 +3,43 @@
   tasks:
     - name: Download the patch
       get_url:
-        url: https://www.openssl.org/source/openssl-1.0.2h.tar.gz
+        url: https://www.openssl.org/source/openssl-3.0.12.tar.gz
         dest: /tmp
 
     - name: Extract the patch
       unarchive:
-        src: /tmp/openssl-1.0.2h.tar.gz
+        src: /tmp/openssl-3.0.12.tar.gz
         dest: /tmp
         remote_src: yes
-
-    # - name: Install the patch
-    #   command: 
-    #     cmd: ./config && make && make test && make install
-    #     chdir: /tmp/openssl-1.0.2h/
-    #     creates: /usr/local/ssl/bin/openssl
-
-    - name: CD 
-      command: cd /tmp/openssl-1.0.2h/
 
     - name: Configure and build OpenSSL  
       command:
         cmd: ./config
-        chdir: /tmp/openssl-1.0.2h/
+        chdir: /tmp/openssl-3.0.12/
       
     - name: Build OpenSSL  
       command:
         cmd: make
-        chdir: /tmp/openssl-1.0.2h/
+        chdir: /tmp/openssl-3.0.12/
 
     # - name: Test OpenSSL  
     #   command:
     #     cmd: make test
-    #     chdir: /tmp/openssl-1.0.2h/
+    #     chdir: /tmp/openssl-3.0.12/
       
     - name: Install OpenSSL  
       command:
         cmd: make install
-        chdir: /tmp/openssl-1.0.2h/
+        chdir: /tmp/openssl-3.0.12/
 
+    - name: sudo ldconfig 
+      command:
+        cmd: sudo ldconfig
+
+    - name: 修改环境变量 
+      command:
+        cmd: export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib64/
+     
     - name: Verify installation
       command: openssl version
       register: result
