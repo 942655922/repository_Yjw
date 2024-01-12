@@ -8,7 +8,9 @@
     # - name: 配置软连接
     #   command: ln -s /usr/lib/openssl/openssl/lib/libcrypto.so.3 /usr/lib64/libcrypto.so.3
     - name: 修改环境变量 
-      command: export LD_LIBRARY_PATH='$LD_LIBRARY_PATH:/usr/lib/openssl/openssl/lib64'
+        environment:  
+          LD_LIBRARY_PATH: "/usr/lib/openssl/openssl/lib64"
+      ignore_errors: true
     - name: Verify installation
       command: openssl version
       register: result
